@@ -1,0 +1,35 @@
+{
+  "name": "granular-spa",
+  "version": "0.1.0",
+  "description": "One wary of granular frontend",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm run install:appMain && npm run install:appVue",
+    "install:appMain": "cd appMain && npm i",
+    "install:appVue": "cd appVue && npm i",
+    "serve-all": "concurrently --kill-others --kill-others-on-fail -p name --names \"appMain,appVue\" \"npm run serve:appMain\" \"npm run serve:appVue\" ",
+    "serve:appMain": "cd appMain && webpack-dev-server --config webpack.config.js --port 9000",
+    "serve:appVue": "cd appVue && webpack-dev-server --config webpack.config.js --port 9001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangjazz/granular-spa.git"
+  },
+  "keywords": [
+    "granular",
+    "spa",
+    "microFrontend"
+  ],
+  "author": "JazzJiang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiangjazz/granular-spa/issues"
+  },
+  "homepage": "https://github.com/jiangjazz/granular-spa#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  }
+}

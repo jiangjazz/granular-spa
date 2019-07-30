@@ -13,3 +13,5 @@ node_modules/
 
 # release folders
 release
+
+package-lock.json
