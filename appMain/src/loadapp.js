@@ -15,7 +15,6 @@ function pathPrefix(prefix) {
     } else {
       status = location.pathname.startsWith(prefix)
     }
-    console.log(prefix, status)
 
     return status
   }

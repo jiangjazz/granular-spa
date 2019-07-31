@@ -33,7 +33,6 @@ export const bootstrap = [
 export function mount(props) {
   // createDomElement()
   props.name = NAME
-  console.log(props, 8888888888)
   Vue.prototype.globalStore = props.globalEventDistributor.stores[0]
   // props.
   return vueLifecycles.mount(props)
