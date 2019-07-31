@@ -1,10 +1,14 @@
+import setPublicPath from './set-public-path'
+// setPublicPath()
+
+console.log(__webpack_public_path__)
+
 import Vue from 'vue'
 import singleSpaVue from 'single-spa-vue';
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// import setPublicPath from './set-public-path'
 
 
 Vue.config.productionTip = false;
@@ -22,10 +26,9 @@ const vueLifecycles = singleSpaVue({
 });
 
 export const bootstrap = [
-  // () => {
-  //   console.log(__webpack_public_path__)
-  //   return setPublicPath()
-  // },
+  () => {
+    return setPublicPath()
+  },
   vueLifecycles.bootstrap,
 ];
 

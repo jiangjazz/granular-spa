@@ -1,20 +1,23 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin')
 
 let route = '_appVue'
 
 const ASSET_PATH = process.env.ASSET_PATH || 'http://localhost:9001/'
 
 module.exports = {
+  // mode: 'development',
   entry: {
-    singleSpaEntry: 'src/singleSpaEntry.js'
+    singleSpaEntry: path.resolve(__dirname, 'src/singleSpaEntry.js')
   },
   output: {
 		publicPath: ASSET_PATH,
     filename: '[name].js',
-    path: path.resolve(__dirname, 'release'),
+    path: path.resolve(__dirname, '../dist/' + route),
     libraryTarget: 'umd',
-    library: route
   },
   module: {
     rules: [{
@@ -29,7 +32,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: [path.resolve(__dirname, 'node_modules')],
       },
       {
         test: /\.css$/,
@@ -52,7 +55,6 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               implementation: require('sass')
-              // implementation: require('dart-sass')
             }
           }
         ]
@@ -61,7 +63,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            outputPath: 'images'
+            // publicPath: 'images'
           },
         }]
       }
@@ -80,10 +82,17 @@ module.exports = {
       'node_modules',
     ],
   },
-  mode: 'development',
   devtool: 'none',
   externals: [],
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new CleanWebpackPlugin(
+      // {
+      //   dangerouslyAllowCleanPatternsOutsideProject: true,
+      //   cleanOnceBeforeBuildPatterns: [
+      //     path.resolve(__dirname, '../dist/'+ route)
+      //   ]
+      // }
+    )
   ],
 };

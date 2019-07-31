@@ -1,12 +1,14 @@
 // For lazy loading within an application to work you need to set webpack's public path
 // basically webpack's internal module system always looks for code-splits (modules) at the root
+
 export default function setPublicPath() {
   return Promise.all([getUrl()]).then(values => {
     const [url] = values
     const webpackPublicPath = url.slice(0, url.lastIndexOf('/') + 1)
-
-    __webpack_public_path__ = webpackPublicPath
-    console.log(11111, __webpack_public_path__)
+    // __webpack_public_path__ = webpackPublicPath
+    __webpack_public_path__ = webpackPublicPath + '_appVue/'
+    console.log(111, values)
+    console.log(222, webpackPublicPath, __webpack_public_path__)
     return true
   })
 }
