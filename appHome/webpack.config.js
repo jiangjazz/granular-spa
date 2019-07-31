@@ -11,7 +11,8 @@ const ASSET_PATH = process.env.ASSET_PATH || 'http://localhost:9100/'
 module.exports = {
   // mode: 'development',
   entry: {
-    singleSpaEntry: path.resolve(__dirname, 'src/singleSpaEntry.js')
+    singleSpaEntry: path.resolve(__dirname, 'src/singleSpaEntry.js'),
+    store: path.resolve(__dirname, 'src/store')
   },
   output: {
 		publicPath: ASSET_PATH,
