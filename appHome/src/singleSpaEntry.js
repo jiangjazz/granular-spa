@@ -14,7 +14,7 @@ Vue.config.productionTip = false
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
-    el: `#${NAME}`,
+    el: '#appHome',
     render: h => h(App),
     router,
     store
@@ -33,6 +33,7 @@ export const bootstrap = [
 
 export function mount(props) {
   createDomElement()
+  console.log(props)
   return vueLifecycles.mount(props)
 }
 
@@ -49,5 +50,7 @@ function createDomElement() {
     el.id = NAME
     document.body.appendChild(el)
   }
+
+  console.log(el, 11111, el.id)
   return el
 }
