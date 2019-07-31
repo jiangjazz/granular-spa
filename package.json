@@ -4,7 +4,7 @@
   "description": "One wary of granular frontend",
   "main": "index.js",
   "scripts": {
-    "install-all": "npm run install:appMain && npm run install:appHome && npm run install:appVue",
+    "install-all": "npm i && npm run install:appMain && npm run install:appHome && npm run install:appVue",
     "install:appMain": "cd appMain && npm i",
     "install:appHome": "cd appHome && npm i",
     "install:appVue": "cd appVue && npm i",
