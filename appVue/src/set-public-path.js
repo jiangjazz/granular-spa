@@ -7,8 +7,6 @@ export default function setPublicPath() {
     const webpackPublicPath = url.slice(0, url.lastIndexOf('/') + 1)
     // __webpack_public_path__ = webpackPublicPath
     __webpack_public_path__ = webpackPublicPath + '_appVue/'
-    console.log(111, values)
-    console.log(222, webpackPublicPath, __webpack_public_path__)
     return true
   })
 }

@@ -1,54 +1,53 @@
 import setPublicPath from './set-public-path'
-// setPublicPath()
-
-console.log(__webpack_public_path__)
 
 import Vue from 'vue'
-import singleSpaVue from 'single-spa-vue';
+import singleSpaVue from 'single-spa-vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// 根容器id
+const NAME = 'appVue'
 
-
-Vue.config.productionTip = false;
-
-// process.env.BASE_URL = '/vue'
+Vue.config.productionTip = false
 
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
-    el: '#vue',
+    el: `#${NAME}`,
     render: h => h(App),
     router,
     store
   }
-});
+})
 
 export const bootstrap = [
   () => {
     return setPublicPath()
   },
-  vueLifecycles.bootstrap,
-];
+  (props) => {
+    console.log(props)
+    return vueLifecycles.bootstrap(props)
+  },
+]
 
 export function mount(props) {
-  createDomElement();
-  return vueLifecycles.mount(props);
+  createDomElement()
+  return vueLifecycles.mount(props)
 }
 
 export const unmount = [
   vueLifecycles.unmount,
-];
+]
 
 function createDomElement() {
   // Make sure there is a div for us to render into
-  let el = document.getElementById('vue');
+  let el = document.getElementById(NAME)
 
   if (!el) {
-    el = document.createElement('div');
-    el.id = 'vue';
-    document.body.appendChild(el);
+    el = document.createElement('div')
+    el.id = NAME
+    document.body.appendChild(el)
   }
-  return el;
+  return el
 }

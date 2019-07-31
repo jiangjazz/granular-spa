@@ -24,5 +24,5 @@ function pathPrefix(prefix) {
 export async function loadApp(name, hash, appURL, storeURL, globalEventDistributor) {
   // await load store
 
-  registerApplication(name, () => window.SystemJS.import(appURL), pathPrefix(hash))
+  registerApplication(name, () => window.SystemJS.import(appURL), pathPrefix(hash), {abc: 1})
 }
