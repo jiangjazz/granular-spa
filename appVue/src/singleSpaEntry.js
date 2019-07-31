@@ -14,7 +14,7 @@ Vue.config.productionTip = false
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
-    el: `#${NAME}`,
+    // el: `#${NAME}`,
     render: h => h(App),
     router,
     store
@@ -32,7 +32,8 @@ export const bootstrap = [
 ]
 
 export function mount(props) {
-  createDomElement()
+  // props.domElement = createDomElement()
+  props.name = NAME
   return vueLifecycles.mount(props)
 }
 
@@ -40,14 +41,14 @@ export const unmount = [
   vueLifecycles.unmount,
 ]
 
-function createDomElement() {
-  // Make sure there is a div for us to render into
-  let el = document.getElementById(NAME)
+// function createDomElement() {
+//   // Make sure there is a div for us to render into
+//   let el = document.getElementById(NAME)
 
-  if (!el) {
-    el = document.createElement('div')
-    el.id = NAME
-    document.body.appendChild(el)
-  }
-  return el
-}
+//   if (!el) {
+//     el = document.createElement('div')
+//     el.id = NAME
+//     document.body.appendChild(el)
+//   }
+//   return el
+// }
