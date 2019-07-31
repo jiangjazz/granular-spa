@@ -1,8 +1,7 @@
 import setPublicPath from './set-public-path'
 
 import Vue from 'vue'
-import singleSpaVue from './assets/single-spa-vue'
-// import singleSpaVue from 'single-spa-vue'
+import singleSpaVue from 'single-spa-vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
