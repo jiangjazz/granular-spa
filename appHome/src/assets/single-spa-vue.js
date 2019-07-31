@@ -23,8 +23,6 @@ export default function singleSpaVue(userOpts) {
     throw new Error('single-spa-vuejs must be passed opts.appOptions');
   }
 
-  console.log(opts.appOptions)
-
   // Just a shared object to store the mounted object state
   let mountedInstances = {};
 
@@ -48,21 +46,18 @@ function mount(opts, mountedInstances, props) {
   return Promise
     .resolve()
     .then(() => {
-      const appOptions = {...opts.appOptions}
-      console.log(1, props)
+      const appOptions = {
+        ...opts.appOptions
+      }
       if (props.domElement && !appOptions.el) {
         appOptions.el = props.domElement;
-        console.log(2)
       }
 
       if (!appOptions.el) {
-        console.log(3)
         const htmlId = `single-spa-application:${props.name}`
         appOptions.el = `#${htmlId.replace(':', '\\:')} .single-spa-container`
         let domEl = document.getElementById(htmlId)
-        console.log(4)
         if (!domEl) {
-          console.log(5)
           domEl = document.createElement('div')
           domEl.id = htmlId
           document.body.appendChild(domEl)
@@ -72,7 +67,6 @@ function mount(opts, mountedInstances, props) {
         // We want domEl to stick around and not be replaced. So we tell Vue to mount
         // into a container div inside of the main domEl
         if (!domEl.querySelector('.single-spa-container')) {
-          console.log(6)
           const singleSpaContainer = document.createElement('div')
           singleSpaContainer.className = 'single-spa-container'
           domEl.appendChild(singleSpaContainer)
@@ -89,11 +83,17 @@ function mount(opts, mountedInstances, props) {
         appOptions.data = {}
       }
 
-      appOptions.data = {...appOptions.data, ...props}
-      
-      console.log(appOptions, 66666666666)
+      appOptions.data = {
+        ...appOptions.data,
+        ...props
+      }
+
+      // if (props.globalStore) {
+      //   appOptions.store.modules.global = globalStore
+      //   console.log(1111)
+      // }
+
       mountedInstances.instance = new opts.Vue(appOptions);
-      console.log(mountedInstances)
       if (mountedInstances.instance.bind) {
         mountedInstances.instance = mountedInstances.instance.bind(mountedInstances.instance);
       }

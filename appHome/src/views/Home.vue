@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <h1>这是appHome项目</h1>
+    {{ reduxState }}
+    <button @click="clicks">点击</button>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -15,8 +17,30 @@ export default {
   components: {
     HelloWorld
   },
+  data () {
+    return {
+      // 
+      reduxListen: () => {},
+      //
+      reduxState: {}
+    }
+  },
+  methods: {
+    clicks() {
+      this.globalStore.dispatch({ type: 'INCREMENT' })
+    },
+    init() {
+      this.reduxState = this.globalStore.getState()
+      this.reduxListen = this.globalStore.subscribe(() => {
+        this.reduxState = this.globalStore.getState()
+      })
+    }
+  },
   mounted () {
-    console.log(this.$store.state)
+    this.init()
+  },
+  beforeDestroy () {
+    this.reduxListen()
   }
 }
 </script>

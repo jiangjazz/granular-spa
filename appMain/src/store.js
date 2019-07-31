@@ -1,13 +1,25 @@
-import Vuex from 'vuex'
+import {
+  createStore
+} from 'redux';
 
-export default new Vuex.Store({
-  state: {
-    global: '我是全局store state'
-  },
-  mutations: {
+const initialState = {
+  count: 0,
+  name: '我是全局store'
+};
 
-  },
-  actions: {
-
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      state.count ++
+      console.log(state)
+      return state
+    case 'DECREMENT':
+      return {
+        count: state.count - 1
+      };
+    default:
+      return state;
   }
-})
+}
+
+export const storeInstance = createStore(reducer)

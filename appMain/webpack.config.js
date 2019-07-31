@@ -11,6 +11,7 @@ module.exports = {
   // mode: 'development',
   entry: {
     'main':  path.resolve(__dirname, 'src/main.js'),
+    'store': path.resolve(__dirname, 'src/store.js')
   },
   output: {
 		publicPath: ASSET_PATH,
