@@ -74,6 +74,12 @@ module.exports = {
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     },
     proxy: {
+      "/appHome": {
+        target: "http://localhost:9100",
+        pathRewrite: {
+          "^/appHome": ""
+        }
+      },
       "/_appVue": {
         target: "http://localhost:9001",
         pathRewrite: {

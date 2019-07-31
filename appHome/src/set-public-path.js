@@ -1,6 +1,6 @@
 // For lazy loading within an application to work you need to set webpack's public path
 // basically webpack's internal module system always looks for code-splits (modules) at the root
-const route = '_appVue'
+const route = '_appHome'
 
 
 export default function setPublicPath() {
