@@ -2,7 +2,7 @@ import {
   registerApplication
 } from 'single-spa'
 
-console.log(SystemJS)
+console.log(window.SystemJS)
 
 function pathPrefix(prefix) {
 
@@ -24,5 +24,5 @@ function pathPrefix(prefix) {
 export async function loadApp(name, hash, appURL, storeURL, globalEventDistributor) {
   // await load store
 
-  registerApplication(name, () => SystemJS.import(appURL), pathPrefix(hash))
+  registerApplication(name, () => window.SystemJS.import(appURL), pathPrefix(hash))
 }

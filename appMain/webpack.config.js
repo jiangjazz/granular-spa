@@ -8,19 +8,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ASSET_PATH = process.env.ASSET_PATH || '/'
 
 module.exports = {
-  mode: 'development',
+  // mode: 'development',
   entry: {
-    // Set the single-spa config as the project entry point
-    'main': './src/main.js',
+    'main':  path.resolve(__dirname, 'src/main.js'),
   },
   output: {
 		publicPath: ASSET_PATH,
     filename: '[name].js',
-    path: path.resolve(__dirname, 'release')
+    path: path.resolve(__dirname, '..', 'dist'),
+    libraryTarget: 'umd',
   },
   module: {
     rules: [{
-      // Webpack style loader added so we can use materialize
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
     }, {
@@ -32,7 +31,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          outputPath: 'images'
+          // outputPath: 'images'
         },
       }]
     }],
@@ -45,15 +44,20 @@ module.exports = {
   },
   plugins: [
     CopyWebpackPlugin([{
-      // from: path.resolve(__dirname, 'src/index.html'),
       from: path.resolve(__dirname, 'libs/system.js')
     }]),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/index.html')
     }),
-    // A webpack plugin to remove/clean the output folder before building
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(
+      // {
+      //   dangerouslyAllowCleanPatternsOutsideProject: true,
+      //   cleanOnceBeforeBuildPatterns: [
+      //     path.resolve(__dirname, '../dist')
+      //   ]
+      // }
+    )
   ],
   devtool: 'source-map',
   externals: [],
@@ -69,7 +73,6 @@ module.exports = {
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     },
-    // Proxy config for development purposes. In production, you would configure you webserver to do something similar.
     proxy: {
       "/_appVue": {
         target: "http://localhost:9001",
