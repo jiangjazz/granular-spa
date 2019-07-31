@@ -4,7 +4,7 @@ const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin')
 
-let route = '_appVue'
+const route = '_appVue'
 
 const ASSET_PATH = process.env.ASSET_PATH || 'http://localhost:9001/'
 

@@ -4,7 +4,7 @@ const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin')
 
-let route = '_appHome'
+const route = '_appHome'
 
 const ASSET_PATH = process.env.ASSET_PATH || 'http://localhost:9100/'
 
@@ -12,7 +12,7 @@ module.exports = {
   // mode: 'development',
   entry: {
     singleSpaEntry: path.resolve(__dirname, 'src/singleSpaEntry.js'),
-    store: path.resolve(__dirname, 'src/store')
+    // store: path.resolve(__dirname, 'src/store.js')
   },
   output: {
 		publicPath: ASSET_PATH,
