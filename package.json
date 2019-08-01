@@ -12,7 +12,7 @@
     "serve:appMain": "cd appMain && webpack-dev-server --config webpack.config.js --port 9000",
     "serve:appHome": "cd appHome && webpack-dev-server --config webpack.config.js --port 9100",
     "serve:appVue": "cd appVue && webpack-dev-server --config webpack.config.js --port 9001",
-    "build-all": "npm run build:appMain && npm run build:appVue",
+    "build-all": "npm run build:appMain && npm run build:appHome && npm run build:appVue",
     "build:appMain": "cd appMain && webpack --config ./webpack.config.js -p",
     "build:appHome": "cd appHome && webpack --config ./webpack.config.js -p",
     "build:appVue": "cd appVue && webpack --config ./webpack.config.js -p",
