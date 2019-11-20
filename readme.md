@@ -1,3 +1,5 @@
+<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg" alt="996.icu" /></a>
+
 ## granular-spa
 ```
 微前端架构的一种实现形式————各个子项目独立打包、独立发布；也可独立启动、运行
