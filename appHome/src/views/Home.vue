@@ -3,20 +3,21 @@
     <h1>这是appHome项目</h1>
     {{ reduxState }}
     <button @click="clicks">点击</button>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    
+
+    <!-- 可变内容 -->
+    <div class="m-test">
+      <div class="title">标题</div>
+      <div class="content">内容</div>
+    </div>
+    <!-- 可变内容 end-->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'home',
-  components: {
-    HelloWorld
-  },
   data () {
     return {
       // 

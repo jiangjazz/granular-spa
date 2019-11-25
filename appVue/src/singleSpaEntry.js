@@ -6,6 +6,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import './assets/index.scss'
+
 // 根容器id
 const NAME = 'appVue'
 
